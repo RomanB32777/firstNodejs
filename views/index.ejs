@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<!--[if lt IE 8 ]><html class="no-js ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="no-js ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 8)|!(IE)]><!--><html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+
+   <!--- Basic Page Needs
+   ================================================== -->
+   <meta charset="utf-8">
+	<title>Sparrow - Free Responsive HTML5/CSS3 Template</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+  <!-- <link rel="stylesheet" href="/public/css/layout.css" >
+     <link rel="stylesheet" href="/public/css/media-queries.css">
+     <link rel="stylesheet" href="/public/css/default.css"> -->
+     <link rel="stylesheet" href="/build/css/style.css">
+   <!-- Mobile Specific Metas
+   ================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- CSS
+    ================================================== -->
+   <!-- <link rel="stylesheet" href="C:\Users\e228e\Desktop\nodejs\css\layout.css"> -->
+	<!-- <link rel="stylesheet" href="css/layout.css">
+   <link rel="stylesheet" href="css/media-queries.css"> -->
+
+   <!-- Script
+   ================================================== -->
+	<!-- <script src="js/modernizr.js"></script> -->
+
+   <!-- Favicons
+	================================================== -->
+	<!-- <link rel="shortcut icon" href="favicon.ico" > -->
+
+
+
+</head>
+<body>
+
+   <!-- Header
+   ================================================== -->
+   <header>
+
+      <div class="row">
+
+         <div class="twelve columns">
+
+            <div class="logo">
+               <!-- <a href="index.html"><img alt="" src="images/logo.png"></a> -->
+            </div>
+
+<% include blocks/menu.ejs %>
+
+         </div>
+
+      </div>
+
+   </header> <!-- Header End -->
+
+   <!-- Intro Section
+   ================================================== -->
+
+
+
+
+
+     <% for (var i = 0; i < posts.length; i++) { %>
+  <div class="post">
+    <div class="top">
+      <p>
+        <a href="/posts/<%=posts[i].url %>">
+          <%=posts[i].title %>
+        </a>
+
+      </p>
+    </div>
+    <div class="body">
+      <h2><%=posts[i].body %></h2>
+    </div>
+    <div class="bottom">
+      <div class="author">
+        Автор:
+        <a href="/users/<%=posts[i].owner.login %>">
+                 <%=posts[i].owner.login %>
+               </a>
+      </div>
+      <a href="/posts/<%=posts[i].url %>#<%=posts[i].id %>">Комментарии:
+           <%=posts[i].commentCount %>
+         </a>
+    </div>
+  </div>
+  <% } %>
+
+    <div class="pagination">
+      <% if (current > 2) { %>
+        <a class="new" href="/archive/<%= Number(current) - 1 %>">← К новым</a>
+        <% } %>
+          <% if (current == 2) { %>
+            <a class="new" href="/">← На главную</a>
+            <% } %>
+              <% if (pages > 0 && current < pages) { %>
+                <a class="old" href="/archive/<%= Number(current) + 1 %>">К старым →</a>
+                <% } %>
+
+    </div>
+ <section id="intro">
+      <!-- Flexslider Start-->
+	   <div id="intro-slider" class="flexslider">
+
+		   <ul class="slides">
+
+
+
+			   <!-- Slide -->
+			   <li>
+				   <div class="row">
+					   <div class="twelve columns">
+						   <div class="slider-text">
+							   <h1>Free amazing site template<span>.</span></h1>
+							   <p>Aenean condimentum, lacus sit amet luctus lobortis, dolores et quas molestias excepturi
+                        enim tellus ultrices elit, amet consequat enim elit noneas sit amet luctu. lacus sit amet luctus lobortis, dolores et quas molestias excepturi
+                        enim tellus ultrices elit.</p>
+						   </div>
+                     <div class="slider-image">
+                        <!-- <img src="images/sliders/home-slider-image-01.png" alt="" /> -->
+                     </div>
+					   </div>
+				   </div>
+			   </li>
+
+            <!-- Slide -->
+			   <li>
+				   <div class="row">
+					   <div class="twelve columns">
+						   <div class="slider-text">
+							   <h1>Responsive + HTML5 + CSS3<span>.</span></h1>
+							   <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
+                        deleniti eos et accusamus. amet consequat enim elit noneas sit amet luctu. lacus sit amet luctus lobortis.
+                        Aenean condimentum, lacus sit amet luctus.</p>
+						   </div>
+                     <div class="slider-image">
+                        <!-- <img src="images/sliders/home-slider-image-02.png" alt="" /> -->
+                     </div>
+					   </div>
+				   </div>
+			   </li>
+
+		   </ul>
+
+	   </div> <!-- Flexslider End-->
+
+   </section> <!-- Intro Section End-->
+
+   <!-- Info Section
+   ================================================== -->
+
+   <% if(!user.id && !user.login) { %>
+   <form method="post" class="login">
+     <h2>Вход</h2>
+     <div class="form-group">
+       <label for="login-login">Логин</label>
+       <input type="text" id="login-login" name="login" />
+     </div>
+     <div class="form-group">
+       <label for="login-password">Пароль</label>
+       <input type="password" id="login-password" name="password" />
+     </div>
+     <div class="buttons">
+       <button class="switch-button secondary-inverse">Регистрация</button>
+       <button class="login-button">Войти</button>
+     </div>
+   </form>
+
+   <form method="post" class="register">
+     <h2>Регистрация</h2>
+     <div class="form-group">
+       <label for="register-login">Логин</label>
+       <input type="text" id="register-login" name="login" />
+     </div>
+     <div class="form-group">
+       <label for="register-password">Пароль</label>
+       <input type="password" id="register-password" name="password" />
+     </div>
+     <div class="form-group">
+       <label for="register-password-confirm">Повтори пароль</label>
+       <input type="password" id="register-password-confirm" name="passwordConfirm" />
+     </div>
+     <div class="buttons">
+       <button class="switch-button secondary-inverse">Вход</button>
+       <button class="register-button">Регистрация</button>
+     </div>
+   </form>
+
+   <% } else { %>
+      <p>
+      Привет, <%= user.login %>! <a href="/api/auth/logout">Выход</a>
+    </p>
+      <% } %>
+
+<% include blocks/footer.ejs %>
